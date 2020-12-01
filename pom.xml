@@ -25,6 +25,11 @@
             <version>5.4.24.Final</version>
         </dependency>
         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-annotations</artifactId>
+            <version>3.5.6-Final</version>
+        </dependency>
+        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>1.1.23</version>
@@ -49,6 +54,17 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.11</version>
         </dependency>
+        <!-- swagger -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -57,6 +73,11 @@
                 <targetPath>WEB-INF</targetPath>
                 <filtering>false</filtering>
                 <directory>${basedir}/webapp/WEB-INF</directory>
+            </resource>
+            <resource>
+                <targetPath>pages</targetPath>
+                <filtering>false</filtering>
+                <directory>${basedir}/webapp/pages</directory>
             </resource>
         </resources>
         <plugins>
