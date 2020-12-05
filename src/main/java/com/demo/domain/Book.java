@@ -1,6 +1,7 @@
 package com.demo.domain;
 
 import com.demo.utils.validatorgroup.SaveBookCheck;
+import com.demo.utils.validatorgroup.UpdateBookCheck;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -17,10 +18,11 @@ import java.util.Date;
 public class Book {
 
     @ApiModelProperty(value = "标识", name = "id", example = "5aee4cab-d44e-440f-b817-78b4a3c8bbaa")
+    @NotBlank(message = "标识不能为空", groups = {UpdateBookCheck.class})
     private String id;
 
     @ApiModelProperty(value = "书名", name = "name", example = "程序员入门")
-    @NotBlank(message = "书名不能为空", groups = {SaveBookCheck.class})
+    @NotBlank(message = "书名不能为空", groups = {SaveBookCheck.class, UpdateBookCheck.class})
     private String name;
 
     @ApiModelProperty(value = "作者", name = "author", example = "老前辈")

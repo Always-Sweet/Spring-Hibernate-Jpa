@@ -7,12 +7,12 @@
 
     <class name="Book" table="book">
         <id name="id">
-            <generator class="native" />
+            <generator class="uuid" />
         </id>
         <property name="name" />
         <property name="author" />
         <property name="price" />
-        <property name="storageDate" />
+        <property name="storageDate" column="storage_date" />
         <property name="image" />
     </class>
 </hibernate-mapping>
