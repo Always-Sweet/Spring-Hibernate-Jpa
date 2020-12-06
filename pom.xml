@@ -7,8 +7,10 @@
     <groupId>com.demo</groupId>
     <artifactId>spring-hibernate-jpa</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
@@ -75,43 +77,29 @@
             <artifactId>commons-fileupload</artifactId>
             <version>1.4</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>commons-io</groupId>-->
-            <!--<artifactId>commons-io</artifactId>-->
-            <!--<version>2.8.0</version>-->
-        <!--</dependency>-->
     </dependencies>
 
     <build>
-        <resources>
-            <!--<resource>-->
-                <!--<targetPath>WEB-INF</targetPath>-->
-                <!--<filtering>false</filtering>-->
-                <!--<directory>${basedir}/webapp/WEB-INF</directory>-->
-            <!--</resource>-->
-            <!--<resource>-->
-                <!--<targetPath>pages</targetPath>-->
-                <!--<filtering>false</filtering>-->
-                <!--<directory>${basedir}/webapp/pages</directory>-->
-            <!--</resource>-->
-            <resource>
-                <filtering>false</filtering>
-                <directory>${basedir}/image</directory>
-            </resource>
-        </resources>
+        <finalName>books</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>1.2.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <webXml>webapp/WEB-INF/web.xml</webXml>
+                    <warSourceDirectory>webapp</warSourceDirectory>
+                    <webResources>
+                        <resource>
+                            <targetPath>/image</targetPath>
+                            <directory>${basedir}/image</directory>
+                            <filtering>true</filtering>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                </configuration>
             </plugin>
         </plugins>
     </build>
