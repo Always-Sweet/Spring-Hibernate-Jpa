@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加书籍</title>
+    <link rel="stylesheet" type="text/css" href="../css/index.css" />
+    <script type="text/javascript" src="../script/ajax.js"></script>
+    <script type="text/javascript" src="../script/common.js"></script>
+    <script type="text/javascript" src="../script/add.js"></script>
+</head>
+<body onload="init()">
+    <div class="wrap">
+        <div>
+            <span>
+                <h1>图书管理系统</h1>
+            </span>
+        </div>
+        <div class="actionArea">
+            <span id="navigation"></span>
+        </div>
+        <div>
+            <form action="/demo/books" method="post" id="bookForm" onsubmit="return save();">
+                <table>
+                    <tr>
+                        <td>书名：</td>
+                        <td><input name="name" autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <td>作者：</td>
+                        <td><input name="author" autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <td>价格：</td>
+                        <td><input name="price" autocomplete="off" type="number"></td>
+                    </tr>
+                </table>
+                <div>
+                    <button type="submit">保存</button>
+                    <button type="button" onclick="javascript:window.location.href='/demo'">返回</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

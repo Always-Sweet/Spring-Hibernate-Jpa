@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
@@ -19,6 +20,7 @@ public class Book {
 
     @ApiModelProperty(value = "标识", name = "id", example = "5aee4cab-d44e-440f-b817-78b4a3c8bbaa")
     @NotBlank(message = "标识不能为空", groups = {UpdateBookCheck.class})
+    @Id
     private String id;
 
     @ApiModelProperty(value = "书名", name = "name", example = "程序员入门")

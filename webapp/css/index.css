@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 5px;
+}
+
+.wrap {
+    width: 750px;
+    margin: 0 auto;
+}
+
+#bookList {
+    margin: 10px 0;
+}
+
+#bookList > tr > th {
+    font-weight: bold;
+}
+
+#bookList > tr > td {
+    padding: 2px
+}
+
+.table_center {
+    text-align: center;
+}
+
+.table_left {
+    text-align: left;
+}
+
+.table_right {
+    text-align: right;
+}
+
+.pagination {
+    display: inline;
+    float: right;
+}
+
+.pagination ul {
+    display: inline-block;
+    list-style: none;
+}
+
+.actionArea {
+    margin-top: 10px;
+}
+
+.actionArea button:not(:first-child) {
+    float: right;
+    margin-right: 10px;
+}
+
+.actionArea span {
+
+}

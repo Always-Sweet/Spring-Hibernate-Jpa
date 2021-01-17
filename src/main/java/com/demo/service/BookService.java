@@ -3,11 +3,15 @@ package com.demo.service;
 import com.demo.dao.BookDao;
 import com.demo.domain.Book;
 import com.demo.exception.LogicException;
+import com.demo.model.PageParam;
+import com.demo.model.PageResult;
 import com.demo.utils.ToolUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 书库service
@@ -17,6 +21,13 @@ public class BookService {
 
     @Autowired
     private BookDao bookDao;
+
+    /**
+     * 获取图书信息
+     */
+    public PageResult find(PageParam pageParam) {
+        return bookDao.find(pageParam);
+    }
 
     /**
      * 获取图书信息
@@ -57,7 +68,7 @@ public class BookService {
      */
     public void removeBook(String id) throws LogicException {
         Book search = bookDao.get(id);
-        if (search == null) throw new LogicException("删除图书不存在");
+        if (search == null) throw new LogicException("删除图书不存在：" + id);
         bookDao.remove(search);
     }
 }

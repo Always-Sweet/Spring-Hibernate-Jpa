@@ -1,6 +1,8 @@
 package com.demo.dao;
 
 import com.demo.domain.Book;
+import com.demo.model.PageParam;
+import com.demo.model.PageResult;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -8,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 书库dao
@@ -18,6 +22,23 @@ public class BookDao {
 
     @Autowired
     private SessionFactory sessionFactory;
+
+    /**
+     * 获取图书
+     */
+    public PageResult find(PageParam pageParam) {
+        int offset = (pageParam.getPageNum() - 1) * pageParam.getPageSize();
+        int limit = pageParam.getPageSize();
+        String hql = " from Book ";
+        Query query = getSession().createQuery(hql);
+        List<Book> result = new ArrayList();
+        if ("2".equals(pageParam.getPageReturnType())) {
+            query.setFirstResult(offset);
+            query.setMaxResults(limit);
+        }
+        result = query.list();
+        return new PageResult(pageParam.getPageSize(), result);
+    }
 
     /**
      * 获取图书

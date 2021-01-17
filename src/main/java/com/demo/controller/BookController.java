@@ -2,6 +2,7 @@ package com.demo.controller;
 
 import com.demo.domain.Book;
 import com.demo.exception.LogicException;
+import com.demo.model.PageParam;
 import com.demo.model.Response;
 import com.demo.service.BookService;
 import com.demo.utils.validatorgroup.SaveBookCheck;
@@ -11,6 +12,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 书库controller
@@ -22,6 +25,19 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+
+    /**
+     * 获取图书信息
+     *
+     * @return
+     */
+    @ApiOperation(value = "获取图书信息")
+    @GetMapping("/all")
+    public Response findAll(@RequestParam(value = "pageNum") Integer pageNum,
+                            @RequestParam(value = "pageSize") Integer pageSize,
+                            @RequestParam(value = "pageReturnType", required = false) String pageReturnType) {
+        return new Response(bookService.find(new PageParam(pageNum, pageSize, pageReturnType)));
+    }
 
     /**
      * 获取图书信息
@@ -65,13 +81,15 @@ public class BookController {
     /**
      * 删除图书
      *
-     * @param id
+     * @param ids
      * @return
      */
     @ApiOperation(value = "删除图书")
     @DeleteMapping
-    public Response removeBook(@RequestParam(value = "id") String id) throws LogicException {
-        bookService.removeBook(id);
+    public Response removeBook(@RequestBody List<String> ids) throws LogicException {
+        for (String id : ids) {
+            bookService.removeBook(id);
+        }
         return new Response();
     }
 
